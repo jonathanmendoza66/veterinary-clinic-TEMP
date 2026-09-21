@@ -32,6 +32,18 @@
 </head>
   <body>
     <div id="root"></div>
+    <script>
+      // GitHub Pages SPA redirect: restores the path saved by 404.html
+      (function () {
+        var r = sessionStorage.getItem('redirect');
+        if (r) {
+          sessionStorage.removeItem('redirect');
+          if (r !== location.pathname) {
+            history.replaceState(null, '', r);
+          }
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
